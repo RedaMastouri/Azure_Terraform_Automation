@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PSAT Practice Hub — Reda Mastouri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b1220;
+      --card: #0f172a;
+      --accent: #7c3aed;
+      --accent-2: #06b6d4;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+    }
+    *{ box-sizing: border-box; }
+    body{
+      margin:0; background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.25), transparent),
+                               radial-gradient(1000px 700px at 90% 20%, rgba(6,182,212,.2), transparent),
+                               var(--bg);
+      color:var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    header{
+      position: relative; overflow:hidden; border-bottom: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6)),
+                  url('https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    }
+    .hero{
+      padding: clamp(48px, 7vw, 96px) 24px; max-width:1100px; margin:0 auto; text-align:center;
+    }
+    .badge{ display:inline-flex; gap:.5rem; align-items:center; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.08); color:#c7d2fe; font-weight:600; letter-spacing:.3px; }
+    .title{ font-family:Poppins, Inter, system-ui; font-weight:800; font-size: clamp(36px, 6vw, 64px); margin:16px 0 8px; line-height:1.05; }
+    .subtitle{ color:var(--muted); font-size: clamp(16px,2.4vw,20px); max-width:800px; margin:0 auto 18px; }
+    .meta{ color:#cbd5e1; font-size:14px; opacity:.9; }
+    .cta-bar{ display:flex; gap:12px; justify-content:center; margin-top:20px; flex-wrap:wrap; }
+    .btn{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:white; padding:12px 18px; border:none; border-radius:14px; font-weight:700; cursor:pointer; box-shadow: 0 10px 30px rgba(124,58,237,.35);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn.secondary{ background: rgba(255,255,255,.08); box-shadow: none; }
+    .btn:hover{ transform: translateY(-2px); box-shadow: 0 16px 40px rgba(124,58,237,.45); }
+
+    /* Slider */
+    .slider-wrap{ max-width:1100px; margin:-50px auto 32px; padding: 0 16px; }
+    .slider{ position:relative; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); border-radius:22px; overflow:hidden; min-height: 760px; }
+    .slides{ display:flex; width:200%; transform: translateX(0%); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .slide{ width:50%; padding: clamp(22px, 3vw, 36px); display:grid; gap:18px; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); align-items:stretch; }
+    .slide-visual{
+      grid-column: 1 / -1; border-radius:18px; overflow:hidden; position:relative; min-height:190px; background:#0b1220;
+    }
+    .slide-visual img{ width:100%; height:100%; object-fit:cover; display:block; filter: saturate(1.1) contrast(1.05); }
+    .slide-visual .overlay{ position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.55)); }
+    .slide-visual .caption{ position:absolute; bottom:14px; left:16px; right:16px; font-weight:700; text-shadow: 0 2px 12px rgba(0,0,0,.6); font-size:18px; }
+
+    .card{ background: rgba(15,23,42,.85); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:16px; display:flex; gap:14px; align-items:flex-start; backdrop-filter: blur(6px); }
+    .card h3{ margin:0 0 6px; font-size:18px; }
+    .card p{ margin:0; color: var(--muted); font-size:14px; }
+    .card a{ display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#a5b4fc; font-weight:700; margin-top:8px; }
+    .card a span{ font-size:18px; }
+
+    .controls{ display:flex; justify-content:space-between; gap:10px; padding:10px; }
+    .dotbar{ display:flex; gap:8px; align-items:center; }
+    .dot{ width:10px; height:10px; border-radius:999px; background:#334155; border:1px solid rgba(255,255,255,.18); }
+    .dot.active{ background:linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 0 0 4px rgba(124,58,237,.18); }
+
+    footer{ text-align:center; color: var(--muted); padding: 24px 16px 40px; font-size:13px; }
+
+    @media (max-width: 640px){
+      .badge{ font-size:12px; }
+      .meta{ font-size:12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="badge">📘 PSAT • Practice Hub</div>
+      <h1 class="title">PSAT Math Landing Page ✨</h1>
+      <p class="subtitle">Interactive links to <strong>no-sign-in</strong> practice tests. Perfect for live tutoring sessions — click, practice, and level up! 🚀</p>
+      <p class="meta">Header: <strong>PSAT</strong> • Date: <strong>October 4, 2025</strong> • Instructor: <strong>Reda Mastouri</strong> 👨‍🏫</p>
+      <div class="cta-bar">
+        <button class="btn" onclick="goSlide(0)">Slide 1 ▸ Core Practice</button>
+        <button class="btn secondary" onclick="goSlide(1)">Slide 2 ▸ More Drills</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="slider-wrap">
+    <section class="slider" aria-roledescription="carousel" aria-label="PSAT Links">
+      <div class="slides" id="slides">
+
+        <!-- Slide 1 -->
+        <div class="slide" aria-label="Slide 1: Core Practice">
+          <div class="slide-visual">
+            <img alt="Math background" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop"/>
+            <div class="overlay"></div>
+            <div class="caption">🔢 Core PSAT Math Practice — click any resource below</div>
+          </div>
+
+          <article class="card">
+            <div>🧭</div>
+            <div>
+              <h3>Test-Guide — Free PSAT Practice Test</h3>
+              <p>Timed, auto-graded practice across PSAT topics.</p>
+              <a href="https://www.test-guide.com/free-psat-practice-tests.html" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>🧮</div>
+            <div>
+              <h3>TestPrepReview — PSAT Math Practice</h3>
+              <p>Quick math quizzes with instant feedback.</p>
+              <a href="https://www.testprepreview.com/psat/psat-math-practice-test.htm" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>📈</div>
+            <div>
+              <h3>Mometrix — PSAT Math Practice Test</h3>
+              <p>Question bank with explanations you can skim together.</p>
+              <a href="https://www.mometrix.com/academy/psat-math-practice-test/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>✏️</div>
+            <div>
+              <h3>High School Test Prep — Math (No Calculator)</h3>
+              <p>No-calculator PSAT-style questions; great for warm-ups.</p>
+              <a href="https://highschooltestprep.com/psat/math-no-calculator/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>🧠</div>
+            <div>
+              <h3>High School Test Prep — PSAT Overview</h3>
+              <p>All sections with math sets included, quick to launch.</p>
+              <a href="https://highschooltestprep.com/psat/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" aria-label="Slide 2: More Drills">
+          <div class="slide-visual">
+            <img alt="Abstract neon shapes" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop"/>
+            <div class="overlay"></div>
+            <div class="caption">🚀 Extra Drills & Full-Length Options</div>
+          </div>
+
+          <article class="card">
+            <div>📚</div>
+            <div>
+              <h3>CareerEmployer — PSAT Math Practice (94 Qs)</h3>
+              <p>Large free set; quick to start during class.</p>
+              <a href="https://careeremployer.com/test-prep/practice-tests/psat-math-practice-test/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>🧭</div>
+            <div>
+              <h3>Kaplan — Free PSAT Practice Quizzes</h3>
+              <p>Curated PSAT quizzes; good for targeted skills.</p>
+              <a href="https://www.kaptest.com/study/psat/psat-free-practice-quizzes/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>💻</div>
+            <div>
+              <h3>Piqosity — Digital PSAT Full-Length</h3>
+              <p>Digital-style practice; helpful for at-home follow-ups.</p>
+              <a href="https://www.piqosity.com/2023/09/25/psat-digital-free-full-length-practice-test/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>🧭</div>
+            <div>
+              <h3>Compass Prep — Digital PSAT Practice</h3>
+              <p>Interface-mimicking drills that feel exam-like.</p>
+              <a href="https://www.compassprep.com/practice-tests/digital-psat/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div>🧪</div>
+            <div>
+              <h3>Smart Edition Academy — Free PSAT Tests</h3>
+              <p>Additional practice sets; good as backups.</p>
+              <a href="https://www.smarteditionacademy.com/psat-practice-tests/" target="_blank" rel="noopener">Open <span>↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="carousel controls">
+        <button class="btn" onclick="prevSlide()">◂ Prev</button>
+        <div class="dotbar" aria-hidden="true">
+          <div class="dot active" id="dot0"></div>
+          <div class="dot" id="dot1"></div>
+        </div>
+        <button class="btn" onclick="nextSlide()">Next ▸</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Links open in a new tab. Resources are offered as-is; availability may change without notice. ✨
+  </footer>
+
+  <script>
+    let current = 0; // 0 or 1
+    const slides = document.getElementById('slides');
+    const dots = [document.getElementById('dot0'), document.getElementById('dot1')];
+
+    function goSlide(i){
+      current = Math.max(0, Math.min(1, i));
+      slides.style.transform = `translateX(${-100 * current}%)`;
+      dots.forEach((d, idx)=> d.classList.toggle('active', idx===current));
+    }
+    function nextSlide(){ goSlide(current === 0 ? 1 : 0); }
+    function prevSlide(){ goSlide(current === 0 ? 1 : 0); }
+
+    // Keyboard access
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight') nextSlide();
+      if(e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Auto-advance every 20s (gentle)
+    setInterval(nextSlide, 20000);
+  </script>
+</body>
+</html>
